@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
 #
+
+import sys
+sys.path.insert(0, "/tmp/xii-docs/xii")
+
+
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.coverage',
