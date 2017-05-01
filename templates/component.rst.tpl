@@ -1,6 +1,5 @@
-{{ name }}
+{{ name }} - {{ short_desc }}
 ===============================================================================
-{{ short_desc }}
 
 Attributes available for this component:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -28,6 +27,9 @@ Name                                     Required        Type                   
 .. note::
 
   Problem how to read the table? Check out _Documentation
+
+Documentation:
+^^^^^^^^^^^^^^
 
 {{ doc }}
 
