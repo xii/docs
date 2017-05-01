@@ -99,30 +99,34 @@ def generate_commands(loader, mgr, output):
     save_file(overview_path, overview.render({"toc": toc}))
 
 
-def attribute_vars(attr):
+def attribute_vars(component, attr):
     has_docs    = attr.__doc__ is not None
     description = attr.keys.structure("description")
     example     = text_if(attr.keys.structure("example"), "No example")
 
+    link = ":doc:`/" + "/".join(["components", component, attr.atype]) + "`"
+
     vars = {
         "has_docs": has_docs,
+        "link": link,
         "required": "No",
         "default": text_if(attr.defaults, "No default"),
         "name": attr.atype,
         "key_desc": to_yaml(description).split("\n"),
-        "example": to_yaml(example).split("\n"),
+        "key_example": to_yaml(example).split("\n"),
+        "example": text_if(attr.example, None),
         "docs": attr.__doc__
     }
     vars["key_desc_len"] = len(vars["key_desc"])
-    vars["example_len"] = len(vars["example"])
+    vars["key_example_len"] = len(vars["key_example"])
 
     return (has_docs, vars)
 
 
-def generate_attribute(attr, single, output):
+def generate_attribute(component, attr, single, output):
     single_path = path.join(output, attr.atype + ".rst")
 
-    has_docs, vars = attribute_vars(attr)
+    has_docs, vars = attribute_vars(component, attr)
 
     if has_docs:
         save_file(single_path, single.render(vars))
@@ -164,7 +168,7 @@ def generate_components(loader, mgr, output):
         attributes = sorted(attributes, lambda a, b: a.atype > b.atype)
 
         for attr in attributes:
-            avars = generate_attribute(attr, attrib, attrib_path)
+            avars = generate_attribute(name, attr, attrib, attrib_path)
 
             # Add required information
             if attr.atype in component.required_attributes:
