@@ -114,7 +114,20 @@ function main() {
   builddir=${workdir}/build
   repodir=${workdir}/xii
 
-  git_clone ${workdir} ${XII_REPO}
+  if [ "$action" = "--local" ]; then
+    path=$1
+    shift
+    action=$1
+    shift
+
+    if [ ! -d $path ]; then
+      fatal "Could not find local source directory"
+    fi
+
+    copy $path ${workdir}
+  else
+    git_clone ${workdir} ${XII_REPO}
+  fi
 
   checkouts="master"
 
