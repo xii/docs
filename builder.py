@@ -47,7 +47,7 @@ def to_yaml(descs):
         desc = ""
         for d in descs:
             if d == "__or__":
-                desc = desc + "\n**Or** ---\n"
+                desc = desc + "\n**-- Or --**\n"
                 continue
             desc = desc + to_yaml(d)
         return desc
