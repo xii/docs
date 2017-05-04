@@ -15,9 +15,9 @@ Reference
 .. seealso::
 
    Most basic functionality is not included in this class but in
-   :ref:`xii.entity.Entity` from which `Component` inherits.
+   :doc:`entity` from which `Component` inherits.
 
-   Check `xii.entity.Entity` for more basic methods.
+   Check :doc:`entity` for more basic methods.
 
 .. autoclass:: xii.component.Component
    :members:

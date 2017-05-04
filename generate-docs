@@ -95,7 +95,7 @@ function git_get_tags() {
 
 function tempdir_new() {
   if [ -d /tmp/xii-docs ]; then
-    rm -rf /tmp/xii-docs > /dev/null 2>&1
+    rm -fr /tmp/xii-docs &> /dev/null
   fi
   mkdir -p /tmp/xii-docs/build
   mkdir -p /tmp/xii-docs/generated
@@ -140,7 +140,9 @@ function main() {
     rm -rf ${builddir}
     copy ${sphinxdir} ${builddir}
 
-    git_checkout ${repodir} ${checkout}
+    if [ "$action" != "--local" ]; then
+      git_checkout ${repodir} ${checkout}
+    fi
 
     builder ${repodir}/src ${builddir}
 
