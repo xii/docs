@@ -1,9 +1,10 @@
-{{ name }} - {{ short_desc }}
+{{ name }}
 ===============================================================================
 
-Attributes available for this component:
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+{{ short_desc }}
 
+Attributes available for this component
+"""""""""""""""""""""""""""""""""""""""
 ======================================== =============== ========================================= =======================================
 Name                                     Required        Type                                      Example
 ======================================== =============== ========================================= =======================================
@@ -26,21 +27,21 @@ Name                                     Required        Type                   
 
 .. note::
 
-  Problem how to read the table? Check out _Documentation
+  Problem how to read the table? Check out Documentation
 
-Documentation:
-^^^^^^^^^^^^^^
+Documentation
+"""""""""""""
 
 {{ doc }}
 
+Further reading
+"""""""""""""""
 .. toctree::
-  :maxdepth: 2
+  :titlesonly:
+  :maxdepth: 1
 
 {% for a in attrs %}
 {% if a.has_docs %}
-  {{ a }}
+  {{ name }}/{{ a.name }}
 {% endif %}
 {% endfor %}
-  
-
-
