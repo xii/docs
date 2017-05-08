@@ -2,6 +2,7 @@
 
 PYTHON=$(which python2)
 SELF=$(dirname $(realpath $0))
+GEN_DIR=${GEN_DIR:-/tmp/xii-docs}
 XII_REPO="https://github.com/xii/xii"
 
 
@@ -94,12 +95,12 @@ function git_get_tags() {
 # tempdir --------------------------------------------------------------------
 
 function tempdir_new() {
-  if [ -d /tmp/xii-docs ]; then
-    rm -fr /tmp/xii-docs &> /dev/null
+  if [ -d ${GEN_DIR} ]; then
+    rm -fr ${GEN_DIR} &> /dev/null
   fi
-  mkdir -p /tmp/xii-docs/build
-  mkdir -p /tmp/xii-docs/generated
-  echo "/tmp/xii-docs"
+  mkdir -p ${GEN_DIR}/build
+  mkdir -p ${GEN_DIR}/generated
+  echo "${GEN_DIR}"
 }
 
 # vvvvvvvvvvvvvvvvvvvvvvvvvvvv real main vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
